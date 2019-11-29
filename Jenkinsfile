@@ -12,6 +12,10 @@ pipeline {
         echo 'Hola desde stage 2'
       }
     }
-
+    post{
+      always(dir){
+        cleanWS
+      }
+    }
   }
 }
