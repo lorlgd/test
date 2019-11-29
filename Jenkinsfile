@@ -4,13 +4,13 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Starting build'
-        sh 'docker build -t app .'
+        sh 'docker build -t app:test .'
       }
     }
     stage('Test') {
       steps {
         echo 'Testing stage'
-        sh 'docker run -d -p 80:80 --rm app'
+        sh 'docker run -d --name app app:test'
         sh '/bin/nc -vz localhost 80'
         sh 'docker stop app'
       }
