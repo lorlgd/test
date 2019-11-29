@@ -17,7 +17,7 @@ pipeline {
     }
     stage('Push Registry'){
       steps {
-        withDockerRegistry(credentialsId: 'dockerCredentials') {
+        withDockerRegistry(credentialsId: 'dockerCredentials', url: 'https://index.docker.io/v1/') {
           sh 'docker tag app:test jafaramirez/app:stable'
           sh 'docker push jafaramirez/app:stable'
         }
