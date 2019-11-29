@@ -1,20 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('Inicio') {
+    stage('Build') {
       steps {
-        echo 'Hola desde stage inicio'
+        echo 'Starting build'
+        sh 'docker build -t app .'
       }
     }
-
-    stage('Test2') {
+    stage('Test') {
       steps {
-        echo 'Hola desde stage 2'
+        echo 'Testing stage'
       }
     }
-    post{
-      always(dir){
-        cleanWS
+    stage('Deploy'){
+      steps {
+        echo 'Deploy'
       }
     }
   }
